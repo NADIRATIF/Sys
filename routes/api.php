@@ -20,11 +20,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class,'authenticate'])->name('login');
 Route::post('/register', [AuthController::class,'register'])->name('register');
+    Route::apiResources(['users' => UserController::class]);
 
 // protected route
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('/auth/user', [AuthController::class, 'authUser']);
     //Route::get('/users', [UserController::class,'index']);
-    Route::apiResources(['users' => UserController::class]);
     Route::delete('/logout', [AuthController::class,'logout']);
 });

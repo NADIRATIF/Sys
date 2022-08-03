@@ -1,31 +1,31 @@
-import React from 'react';
-import {Select,Button} from 'antd';
+import React, {useEffect} from 'react';
+import {Select} from 'antd';
 import {useDispatch, useSelector} from 'react-redux';
 import actions from '../redux/Users/actions';
 
 
-
 function Dashboard() {
-  const {data} = useSelector(state => state.usersReducer)
+  const {Option} = Select;
   const dispatch = useDispatch();
-  let onFinish = () => {
+  const data = useSelector(state => state.usersReducer)
+  console.log(data)
+  useEffect(()=>{
     dispatch({
       type: actions.GET_ALL_USER,
-    });
-  };
+    })
+  }, [])
   return (
     <div className="dashboard">
-      {/*<div>{users.map((item, i) => <p key={i}>{item.name}</p>)}</div>*/}
+      <div>{data.map((item) => <p>{item.name}</p>)}</div>
       <Select
         defaultValue="lucy"
         style={{
           width: 120,
         }}
         allowClear
-      >
-        <Option value="lucy">Lucy</Option>
+        children={Select.Option}>
+        {/*{data.map((item, i) => <Option key={i} value={item.id}>{item.name}</Option>)}*/}
       </Select>
-      <Button type="primary" onClick={onFinish}>test</Button>
     </div>
   );
 }

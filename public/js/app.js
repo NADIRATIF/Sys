@@ -15245,31 +15245,30 @@ function getAllUser() {
 
         case 3:
           response = _context.sent;
-          console.log('data: ', response.data);
-          _context.next = 7;
+          _context.next = 6;
           return (0,redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__.put)({
             type: _Users_actions__WEBPACK_IMPORTED_MODULE_1__["default"].GET_ALL_USER_SUCCESS,
             payload: response.data
           });
 
-        case 7:
-          _context.next = 13;
+        case 6:
+          _context.next = 12;
           break;
 
-        case 9:
-          _context.prev = 9;
+        case 8:
+          _context.prev = 8;
           _context.t0 = _context["catch"](0);
-          _context.next = 13;
+          _context.next = 12;
           return (0,redux_saga_effects__WEBPACK_IMPORTED_MODULE_0__.put)({
             type: _Users_actions__WEBPACK_IMPORTED_MODULE_1__["default"].GET_ALL_USER_FAILURE
           });
 
-        case 13:
+        case 12:
         case "end":
           return _context.stop();
       }
     }
-  }, _marked, null, [[0, 9]]);
+  }, _marked, null, [[0, 8]]);
 }
 
 function rootSaga() {
@@ -15324,14 +15323,16 @@ function Reducer() {
 
   switch (action.type) {
     case _Users_actions__WEBPACK_IMPORTED_MODULE_0__["default"].GET_ALL_USER:
+      console.log("user", action);
       return _objectSpread(_objectSpread({}, state), {}, {
         validateUserLoader: true
       });
 
     case _Users_actions__WEBPACK_IMPORTED_MODULE_0__["default"].GET_ALL_USER_SUCCESS:
+      console.log("sucess", action);
       return _objectSpread(_objectSpread({}, state), {}, {
         validateUserLoader: false,
-        data: action.data
+        data: action.payload
       });
 
     case _Users_actions__WEBPACK_IMPORTED_MODULE_0__["default"].GET_ALL_USER_FAILURE:
